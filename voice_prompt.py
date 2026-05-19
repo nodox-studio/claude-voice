@@ -9,6 +9,8 @@ Usage: python voice_prompt.py
 import sys
 import os
 import re
+import math
+import time
 import subprocess
 import tempfile
 import threading
@@ -54,7 +56,8 @@ _S = {
         "header_sub":       "by Nodox Studio  ·  Ctrl+C to exit  ·  Cmd+W to close panel",
         # Recording
         "press_enter":      "Press Enter to record…",
-        "recording":        f"🔴 Recording…  press {BOLD}Enter{RESET} to stop",
+        "recording":        "🔴  Recording…",
+        "rec_stop_hint":    "press Enter to stop",
         "transcribing":     "⟳  Transcribing…",
         "engine_whisper":   "[Whisper — local]",
         "engine_google":    "[Google Speech — audio sent to Google]",
@@ -108,7 +111,8 @@ _S = {
         "header_sub":       "por Nodox Studio  ·  Ctrl+C para salir  ·  Cmd+W para cerrar",
         # Recording
         "press_enter":      "Presiona Enter para grabar…",
-        "recording":        f"🔴 Grabando…  pulsa {BOLD}Enter{RESET} para terminar",
+        "recording":        "🔴  Grabando…",
+        "rec_stop_hint":    "pulsa Enter para parar",
         "transcribing":     "⟳  Transcribiendo…",
         "engine_whisper":   "[Whisper — local]",
         "engine_google":    "[Google Speech — audio enviado a Google]",
@@ -286,6 +290,40 @@ _whisper_model = None
 
 # ── Core functions ─────────────────────────────────────────────────────────────
 
+def _wave_animation(stop_event: threading.Event) -> None:
+    """Scrolling audio wave bars displayed while recording."""
+    chars = " ▁▂▃▄▅▆▇█"
+    hint  = t("rec_stop_hint")
+    offset = 0
+    while not stop_event.is_set():
+        wave_str = ""
+        for i in range(16):
+            v = (math.sin((i + offset) * 0.45) + math.sin((i + offset * 1.4) * 0.28)) / 2
+            idx = int((v + 1) / 2 * (len(chars) - 1))
+            wave_str += chars[max(0, min(idx, len(chars) - 1))]
+        print(f"\r  {YELLOW}{wave_str}{RESET}  {DIM}{hint}{RESET}   ", end="", flush=True)
+        offset += 1
+        time.sleep(0.09)
+    print(f"\r{' ' * 60}\r", end="", flush=True)
+
+
+def _wait_for_enter() -> None:
+    """Waits for Enter silently — no echo, so the wave animation line stays clean."""
+    import tty, termios
+    fd = sys.stdin.fileno()
+    old = termios.tcgetattr(fd)
+    try:
+        tty.setraw(fd)
+        while True:
+            ch = sys.stdin.read(1)
+            if ch in ("\r", "\n"):
+                break
+            if ch == "\x03":
+                raise KeyboardInterrupt
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old)
+
+
 def get_whisper_model():
     global _whisper_model
     if _whisper_model is None:
@@ -320,8 +358,14 @@ def record_audio() -> str | None:
     thread = threading.Thread(target=_capture, daemon=True)
     thread.start()
 
-    print(f"\n{YELLOW}{t('recording')}{RESET}")
-    input()
+    print(f"\n  {YELLOW}{t('recording')}{RESET}\n", end="", flush=True)
+    anim_stop = threading.Event()
+    anim_thread = threading.Thread(target=_wave_animation, args=(anim_stop,), daemon=True)
+    anim_thread.start()
+    _wait_for_enter()
+    anim_stop.set()
+    anim_thread.join(timeout=0.5)
+    print()
 
     stop_flag.set()
     thread.join(timeout=1)
