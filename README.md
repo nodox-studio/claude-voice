@@ -52,8 +52,8 @@ No AI — just fast, deterministic local rules:
 | You say | Claude receives |
 |---|---|
 | `"uh can you fix the bug in the login form"` | `Fix the bug in the login form.` |
-| `"eh quiero que refactorices el componente"` | `Refactoriza el componente.` |
-| `"puedes explicarme cómo funciona el auth"` | `Explica cómo funciona el auth.` |
+| `"could you please refactor the nav component"` | `Refactor the nav component.` |
+| `"can you explain me how the auth system works"` | `Explain how the auth system works.` |
 | `"i need you to create an endpoint, and also add tests, and also document it"` | `1. Create an endpoint.` / `2. Add tests.` / `3. Document it.` |
 
 Rules applied on-device, no API call, no latency:
