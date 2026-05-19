@@ -1,6 +1,6 @@
 # 🎙 Voice Prompt for Claude Code
 
-**Stop typing your prompts. Just talk.**
+**Talk to Claude Code. No typing.**
 
 Record your voice, transcribe it locally with Whisper (audio never leaves your Mac), clean it up automatically, and paste it straight into Claude Code — all with a single keypress.
 
