@@ -165,7 +165,8 @@ def t(key: str, **kwargs) -> str:
 
 
 # ── Config ────────────────────────────────────────────────────────────────────
-WHISPER_MODEL  = "tiny"   # tiny (~75MB) | base (~150MB) | small (~500MB)
+WHISPER_MODEL  = "tiny"     # tiny (~75MB) | base (~150MB) | small (~500MB)
+TERMINAL_APP   = "Ghostty"  # Ghostty | iTerm2 | WezTerm | Terminal
 AUDIO_RATE     = 16000
 AUDIO_CHANNELS = 1
 AUDIO_CHUNK    = 1024
@@ -428,14 +429,14 @@ def copy_to_clipboard(text: str) -> None:
 
 
 def send_to_claude(text: str) -> None:
-    """Copies text and pastes it into the left Ghostty split (Claude Code)."""
+    """Copies text and pastes it into the left terminal split (Claude Code)."""
     copy_to_clipboard(text)
     subprocess.run([
         "osascript",
-        "-e", 'tell application "Ghostty" to activate',
-        "-e", 'tell application "System Events" to tell process "Ghostty" to key code 123 using {command down, option down}',
+        "-e", f'tell application "{TERMINAL_APP}" to activate',
+        "-e", f'tell application "System Events" to tell process "{TERMINAL_APP}" to key code 123 using {{command down, option down}}',
         "-e", 'delay 0.3',
-        "-e", 'tell application "System Events" to tell process "Ghostty" to keystroke "v" using {command down}',
+        "-e", f'tell application "System Events" to tell process "{TERMINAL_APP}" to keystroke "v" using {{command down}}',
     ])
 
 

@@ -16,30 +16,29 @@ Made with ♥ by [Guille Varela](https://github.com/guillevarela) · [Nodox Stud
 
 Type `/voice` inside Claude Code — a split panel opens right alongside your chat:
 
-```
+```ansi
 ┌──────────────────────────────────────────────────────┐
-│  🎙  Voice Prompt  ·  Claude Code                    │
-│  ──────────────────────────────────────────────────  │
-│  by Nodox Studio  ·  Ctrl+C to exit  ·  Cmd+W close │
-│                                                      │
-│  ►  Press Enter to record…                          │
-│                                                      │
-│  🔴 Recording…  press Enter to stop                 │
-│                                                      │
-│  ⟳  Transcribing…  [Whisper — local]               │
-│                                                      │
-│  🎤 Dictated:    uh can you fix the bug in the      │
-│                  login form, like, you know          │
-│  ✨ Optimized:   Fix the bug in the login form.     │
-│                                                      │
-│  1 🚀 Send to Claude Code                           │
-│  2 ✨ Copy optimized prompt                         │
-│  3 ✏️  Edit text                                     │
-│  4 🔴 Record again                                  │
-│                                                      │
-│  Press a number…  1                                 │
-│                                                      │
-│  ✓  Sent to Claude Code.                            │
+│  [1;36m🎙  Voice Prompt  ·  Claude Code[0m
+│  [2m──────────────────────────────────────────────────[0m
+│  [2mby Nodox Studio  ·  Ctrl+C to exit  ·  Cmd+W close[0m
+│
+│  [32m►  Press Enter to record…[0m
+│
+│  [33m🔴 Recording…  press Enter to stop[0m
+│
+│  [34m⟳  Transcribing…[0m  [2m[Whisper — local][0m
+│
+│  [90m🎤 Dictated:    uh can you fix the bug in the login form, like[0m
+│  [1;36m✨ Optimized:   Fix the bug in the login form.[0m
+│
+│  [1m1[0m 🚀 Send to Claude Code
+│  [1m2[0m ✨ Copy optimized prompt
+│  [1m3[0m ✏️  Edit text
+│  [1m4[0m 🔴 Record again
+│
+│  [2mPress a number…[0m  1
+│
+│  [32m✓  Sent to Claude Code.[0m
 └──────────────────────────────────────────────────────┘
 ```
 
@@ -135,10 +134,13 @@ This was a design priority, not an afterthought.
 Edit these constants near the top of `voice_prompt.py`:
 
 ```python
-WHISPER_MODEL = "tiny"   # tiny (~75 MB) · base (~150 MB) · small (~500 MB)
+WHISPER_MODEL = "tiny"     # tiny (~75 MB) · base (~150 MB) · small (~500 MB)
+TERMINAL_APP  = "Ghostty"  # Ghostty · iTerm2 · WezTerm · Terminal
 ```
 
 `tiny` is fast and works well for short prompts. Upgrade to `base` or `small` if you need better accuracy with heavy accents or complex vocabulary.
+
+`TERMINAL_APP` controls which terminal receives the auto-paste. The `/voice` split panel is Ghostty-only, but recording and paste work with any terminal listed above.
 
 ---
 
