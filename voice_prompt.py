@@ -454,7 +454,7 @@ def read_key() -> str:
 # ── UI ─────────────────────────────────────────────────────────────────────────
 
 def print_header() -> None:
-    os.system("clear")
+    print("\033[2J\033[H", end="", flush=True)
     print(f"\n{BOLD}{CYAN}{t('header')}{RESET}")
     print(f"{DIM}{'─' * 44}{RESET}")
     print(f"{DIM}{t('header_sub')}{RESET}\n")
@@ -471,7 +471,7 @@ def show_menu(dictated: str, optimized: str) -> None:
 
 
 def first_run_welcome() -> None:
-    os.system("clear")
+    print("\033[2J\033[H", end="", flush=True)
     print(f"\n{BOLD}{CYAN}🎙  Voice Prompt for Claude Code{RESET}")
     print(f"{DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}")
     print(f"{DIM}by Guille Varela · Nodox Studio · nodox.studio{RESET}\n")
