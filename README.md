@@ -2,7 +2,7 @@
 
 **Talk to your terminal. Claude Code listens.**
 
-Record your voice, transcribe it locally with Whisper (audio never leaves your Mac), clean it up automatically, and paste it straight into Claude Code — all with a single keypress.
+Especially useful if you use Claude Code from the terminal directly. Records your voice, transcribes it locally with Whisper (OpenAI's offline speech model — audio never leaves your Mac), optimizes the text automatically, and pastes it into Claude Code with a single keypress. If you're on Ghostty, `/voice` opens a split panel automatically alongside your chat.
 
 Made with ♥ by [Guille Varela](https://github.com/guillevarela) · [Nodox Studio](https://nodox.studio)
 
