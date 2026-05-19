@@ -27,4 +27,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Guided installer (`install.sh`) with Homebrew dependency management and venv setup
 - Privacy-first design: audio files deleted immediately after each transcription
 
-[1.0.0]: https://github.com/guillevarela/claude-voice/releases/tag/v1.0.0
+[1.0.0]: https://github.com/nodox-studio/claude-voice/releases/tag/v1.0.0

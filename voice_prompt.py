@@ -91,7 +91,7 @@ _S = {
         "perms_access":     f"  • {YELLOW}Accessibility{RESET}  — needed to auto-paste into Claude Code\n"
                             f"    {DIM}System Settings → Privacy & Security → Accessibility → enable your terminal{RESET}",
         "support_title":    "If you find it useful",
-        "support_star":     f"  ⭐  Star the repo      → {DIM}github.com/guillevarela/claude-voice{RESET}",
+        "support_star":     f"  ⭐  Star the repo      → {DIM}github.com/nodox-studio/claude-voice{RESET}",
         "support_coffee":   f"  ☕  Buy Guille a coffee → {DIM}ko-fi.com/guillevarela{RESET}",
         "support_email":    f"  📧  Questions & support → {DIM}somos@nodox.studio{RESET}",
         "license":          f"MIT License  ·  © Guille Varela / Nodox Studio",
@@ -145,7 +145,7 @@ _S = {
         "perms_access":     f"  • {YELLOW}Accesibilidad{RESET} — para pegar en Claude Code automáticamente\n"
                             f"    {DIM}Sistema → Privacidad y seguridad → Accesibilidad → activa tu terminal{RESET}",
         "support_title":    "Si te resulta útil",
-        "support_star":     f"  ⭐  Deja una estrella en el repo → {DIM}github.com/guillevarela/claude-voice{RESET}",
+        "support_star":     f"  ⭐  Deja una estrella en el repo → {DIM}github.com/nodox-studio/claude-voice{RESET}",
         "support_coffee":   f"  ☕  Invita a Guille a un café    → {DIM}ko-fi.com/guillevarela{RESET}",
         "support_email":    f"  📧  Dudas y soporte              → {DIM}somos@nodox.studio{RESET}",
         "license":          f"Licencia MIT  ·  © Guille Varela / Nodox Studio",

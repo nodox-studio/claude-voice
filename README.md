@@ -34,7 +34,7 @@ You open a split panel in Ghostty, press `Enter` to record, speak your prompt, p
 ## Installation
 
 ```bash
-git clone https://github.com/guillevarela/claude-voice
+git clone https://github.com/nodox-studio/claude-voice
 cd claude-voice
 chmod +x install.sh
 ./install.sh
